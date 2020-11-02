@@ -1,0 +1,70 @@
+{
+  "name": "LDPred",
+  "title": "LDPred",
+  "summary": "ldpred",
+  "dxapi": "1.0.0",
+  "version": "0.0.1",
+  "categories": [
+    "PRS"
+  ],
+  "inputSpec": [
+    {
+      "name": "bed_file",
+      "label": "BED file",
+      "class": "file",
+      "patterns": ["*.bed"],
+      "optional": false
+    },
+    {
+      "name": "bim_file",
+      "label": "BIM file",
+      "class": "file",
+      "patterns": ["*.bim"],
+      "optional": false
+    },
+    {
+      "name": "fam_file",
+      "label": "FAM file",
+      "class": "file",
+      "patterns": ["*.fam"],
+      "optional": false
+    },
+	  {
+      "name": "summary_file",
+      "label": "Summary statitics file",
+      "class": "file",
+      "optional": false
+    },
+    {
+      "name": "coord_args",
+      "label": "LDPred coord args",
+      "class": "string",
+      "optional": false
+    },
+    {
+      "name": "gibbs_args",
+      "label": "LDPred gibbs args",
+      "class": "string",
+      "optional": false
+    }
+  ],
+  "outputSpec": [
+	{
+      "name": "ldpred_out",
+      "label": "LDPred file",
+      "class": "array:file"
+    }
+  ],
+  "access":{
+    "network": [                      
+      "*"                             
+    ]
+  },
+  "runSpec": {
+    "distribution": "Ubuntu",
+    "release": "16.04",
+    "version": "1",
+    "interpreter": "bash",
+    "file": "src/main.sh"
+  }
+}
