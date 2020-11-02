@@ -1,0 +1,58 @@
+{
+  "name": "vcf_extract_marker_ids",
+  "title": "Extract Marker ids",
+  "summary": "Extract Marker ids",
+  "dxapi": "1.0.0",
+  "version": "0.0.11",
+  "categories": [
+    "Variation Calling"
+  ],
+  "inputSpec": [
+    {
+      "name": "vcf_fn",
+      "label": "VCF File",
+      "class": "array:file",
+      "optional": false,
+      "patterns": [
+        "*.vcf.gz"
+      ]
+    },
+    {
+      "name": "out_filename",
+      "label": "Output Filename",
+      "class": "string",
+      "default": "marker_ids",
+      "optional": true
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "marker_out",
+      "label": "Marker ids output",
+      "class": "file"
+    }
+  ],
+  "restartableEntryPoints": "all",
+  "executionPolicy": {
+    "restartOn": {
+      "UnresponsiveWorker": 2,
+      "JMInternalError": 2,
+      "ExecutionError": 2
+    }
+  },
+  "runSpec": {
+  "distribution": "Ubuntu",
+  "release": "14.04",
+  "interpreter": "bash",
+  "file": "src/select_variants.sh"
+  },
+  "access": {
+    "network": [
+      "*"
+    ],
+     "allProjects": "VIEW"
+  },
+  "developers": ["user-manu148"],
+  "openSource" : true,
+  "authorizedUsers" : ["org-geisinger_affiliate", "org-geisinger", "org-support","org-geisinger_devel"]
+}

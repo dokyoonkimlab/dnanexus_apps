@@ -1,0 +1,79 @@
+{
+  "name": "plink_to_vcf",
+  "title": "Convert PLINK file to VCF file",
+  "summary": "plink_to_vcf",
+  "dxapi": "1.0.0",
+  "version": "0.0.1",
+  "categories": [
+    "Variation Calling",
+    "Statistics"
+  ],
+  "inputSpec": [
+    {
+      "name": "bed_in",
+      "label": "PLINK BED file",
+      "class": "file",
+      "patterns": [
+        "*.bed"
+      ]
+    },
+    {
+      "name": "bim_in",
+      "label": "PLINK BIM file",
+      "class": "file",
+      "patterns": [
+        "*.bim"
+      ]
+    },
+    {
+      "name": "fam_in",
+      "label": "PLINK FAM file",
+      "class": "file",
+      "patterns": [
+        "*.fam"
+      ]
+    },
+    {
+      "name" : "prefix",
+      "label" : "Prefix for files",
+      "class" : "string",
+      "optional" :true,
+      "default" : ""
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "vcf_fn",
+      "label": "VCF File(s)",
+      "class": "file",
+      "optional": false,
+      "patterns": [
+        "*.vcf.gz"
+      ]
+    },
+    {
+      "name": "vcfidx_fn",
+      "label": "VCF Index File(s)",
+      "class": "file",
+      "optional": false,
+      "patterns": [
+        "*.vcf.gz.tbi"
+      ]
+    }
+  ],
+  "runSpec": {
+    "distribution": "Ubuntu",
+    "release": "14.04",
+    "execDepends": [
+      {"name": "libgsl0ldbl"},
+      {"name": "pigz"},
+      {"name": "tabix"}
+    ],
+    "interpreter": "bash",
+    "file": "src/vcf_to_plink.sh"
+  },
+  "resources" : "project-BYpFk1Q0pB0xzQY8ZxgJFv1V",
+  "openSource" : true,
+  "developers" : ["user-tnperson", "user-auv13", "user-atf3"],
+  "authorizedUsers": ["org-geisinger_affiliate", "org-geisinger", "org-support", "user-codushlaine", "user-semanti.mukherjee", "user-alexander.li", "user-shannon.bruse", "user-jan.freudenberg", "user-crisvh"]
+}

@@ -1,0 +1,116 @@
+{
+  "name": "vcf_split_multiallelics",
+  "title": "Split Muiltiallelics VCF",
+  "summary": "Split Muiltiallelics to different lines in VCF",
+  "dxapi": "1.0.0",
+  "version": "0.0.11",
+  "categories": [
+    "Variation Calling"
+  ],
+  "inputSpec": [
+    {
+      "name": "vcf_fn",
+      "label": "VCF File",
+      "class": "array:file",
+      "optional": false,
+      "patterns": [
+        "*.vcf.gz"
+      ]
+    },
+    {
+      "name": "vcfidx_fn",
+      "label": "VCF Index File",
+      "class": "array:file",
+      "optional": false,
+      "patterns": [
+        "*.tbi"
+      ]
+    },
+    {
+      "name": "EXTRA_CMD",
+      "label": "Additional Command Line parameters to LeftAlignAndTrimVariants",
+      "class": "string",
+      "optional": true
+      },
+    {
+      "name": "out_suffix",
+      "label": "Output Filename suffix",
+      "class": "string",
+      "optional": true
+    },
+    {
+      "group": "Build Options",
+      "name": "build_version",
+      "label": "NCBI Build Version",
+      "class": "string",
+      "choices": ["rgc_b38","gatk_b38","b37_decoy","hg38chr.fa"],
+      "default": "rgc_b38",
+      "optional": false
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "vcf_out",
+      "label": "Filtered VCF file",
+      "class": "array:file",
+      "patterns": [
+        "*.vcf.gz"
+      ]
+    },
+    {
+      "name": "vcfidx_out",
+      "label": "Filtered VCF Index file",
+      "class": "array:file",
+      "patterns": [
+        "*.tbi"
+      ]
+    },
+    {
+      "name": "vcf_hdr_out",
+      "label": "Filtered VCF sites-only file",
+      "class": "array:file",
+      "optional" : true,
+      "patterns": [
+        "*.vcf.gz"
+      ]
+    },
+    {
+      "name": "vcfidx_hdr_out",
+      "label": "Filtered VCF sites-only Index file",
+      "class": "array:file",
+      "optional" : true,
+      "patterns": [
+        "*.tbi"
+      ]
+    }
+  ],
+  "restartableEntryPoints": "all",
+  "executionPolicy": {
+    "restartOn": {
+      "UnresponsiveWorker": 2,
+      "JMInternalError": 2,
+      "ExecutionError": 2
+    }
+  },
+  "runSpec": {
+  "distribution": "Ubuntu",
+  "release": "12.04",
+  "execDepends": [
+      {"name": "pigz"},
+      {"name": "tabix"},
+      {"name": "vcftools"}
+    ],
+    "interpreter": "bash",
+    "file": "src/select_variants.sh"
+  },
+  "resources" : "project-BYpFk1Q0pB0xzQY8ZxgJFv1V",
+  "access": {
+    "network": [
+      "*"
+    ],
+     "allProjects": "VIEW"
+  },
+  "developers": ["user-tnperson"],
+  "openSource" : true,
+  "authorizedUsers" : ["org-geisinger_affiliate", "org-geisinger", "org-support","org-geisinger_devel"]
+}
